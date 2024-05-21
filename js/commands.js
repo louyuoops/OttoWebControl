@@ -37,6 +37,24 @@ function Fail() {
 function Fart() {
   sendData("fart\n");
 }
+function Updown() {
+  sendData("updown\n");
+}
+function Swing() {
+  sendData("swing\n");
+}
+function Moonwalker() {
+  sendData("moonwalker\n");
+}
+function Crusaito() {
+  sendData("crusaito\n");
+}
+function Flapping() {
+  sendData("flapping\n");
+}
+function ShakeLeg() {
+  sendData("shake_leg\n");
+}
 function Wrong() {
   sendData("wrong\n");
 }

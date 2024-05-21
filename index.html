@@ -25,6 +25,8 @@
     <script>
         const theme = localStorage.getItem('theme') || 'light';
         document.documentElement.dataset.theme = theme;
+        // console.log("fullscreen:", document.fullscreenEnabled)
+        // document.querySelector('body').requestFullscreen();
     </script>
     <main>
 
@@ -41,12 +43,12 @@
                 <div class="container__bluetooth--icon"><span class="bluetooth--icon"></span></div>
                 <div class="otto--robots">
                     <div id="OttoStarter" onclick="OttoConnection('Otto Starter')"><img src="img/OttoS.svg" alt="Otto Starter robot icon" class="robot--icon"></div>
-                    <div id="OttoEmotions" onclick="ComingSoon('Otto Emotions')" class="disabled"><img src="img/OttoE.svg" alt="Otto Emotions robot icon" class="robot--icon"></div>
+                    <!-- <div id="OttoEmotions" onclick="ComingSoon('Otto Emotions')" class="disabled"><img src="img/OttoE.svg" alt="Otto Emotions robot icon" class="robot--icon"></div>
                     <div id="OttoHumanoid" onclick="ComingSoon('Otto Humanoid')"><img src="img/OttoH.svg" alt="Otto Humanoid robot icon" class="robot--icon"></div>
-                    <div id="OttoSmart" onclick="ComingSoon('Otto Smart')"><img src="img/OttoSmart.svg" alt="Otto Smart robot icon" class="robot--icon"></div>
+                    <div id="OttoSmart" onclick="ComingSoon('Otto Smart')"><img src="img/OttoSmart.svg" alt="Otto Smart robot icon" class="robot--icon"></div> -->
                     <div id="OttoWheels" onclick="OttoConnection('Otto Wheels')"><img src="img/OttoW.svg" alt="Otto Wheels robot icon" class="robot--icon"></div>
-                    <div id="OttoQuad" onclick="ComingSoon('Otto Quad')"><img src="img/OttoQ.svg" alt="Otto Quad robot icon" class="robot--icon"></div>
-                    <div id="OttoNinja" onclick="Ninja()"><img src="img/OttoNinja.svg" alt="Otto Ninja robot icon" class="robot--icon"></div>
+                    <!-- <div id="OttoQuad" onclick="ComingSoon('Otto Quad')"><img src="img/OttoQ.svg" alt="Otto Quad robot icon" class="robot--icon"></div> -->
+                    <!-- <div id="OttoNinja" onclick="Ninja()"><img src="img/OttoNinja.svg" alt="Otto Ninja robot icon" class="robot--icon"></div> -->
                 </div>
                 <div class="container__setting--icon"><span class="setting--icon" onclick="settings()"></span></div>
                 <div class="container__arduino--icon"><span class="codes--icon" onclick="arduinoCodes()"></span></div>
@@ -111,8 +113,8 @@
                     <div id="disconnectMessage--container" style="display: flex; flex-direction: column; justify-content: center; align-items: center; width: 100%;">
                         <header>
                             <img id="app--icon" src="img/app-icon.svg" alt="Icon of the web app of Otto DIY">
-                            <h1>Web App Control</h1>
-                            <h3>Click a robot to connect it & get the controller!</h3>
+                            <h1>OttoDIY网页控制应用</h1>
+                            <h3>选择一个机器人进行蓝牙连接控制</h3>
                         </header>
                     </div>
                     <div id="joystick--control" style="display: none;z-index: 1000;align-items: center;justify-content: center; flex-wrap: wrap; width: 40%;">
@@ -162,6 +164,8 @@
     </footer>
 
     <script>
+        
+
         function getUserPreference() {
             return localStorage.getItem('theme') || 'light';
         }
@@ -215,6 +219,7 @@
         }
 
         function changeTheme() {
+            console.log("changeTheme")
             const newUserPref = rotatePreferences(userPreference);
             userPreference = newUserPref;
             saveUserPreference(newUserPref);
@@ -281,7 +286,7 @@
             const avoidLabel = document.createElement("label");
             avoidLabel.classList.add("txt");
             avoidLabel.setAttribute("for", "starter-switch");
-            avoidLabel.innerText = "Avoid";
+            avoidLabel.innerText = "避障";
             const avoidInput = document.createElement("input");
             avoidInput.type = "checkbox";
             avoidInput.id = "starter-switch";
@@ -347,30 +352,48 @@
             gesturesDiv.id = "gestures--buttons";
             fun.appendChild(gesturesDiv);
             let btn;
-            for (let i = 0; i < 7; i++) {
+            for (let i = 0; i < 13; i++) {
                 btn = document.createElement("button");
                 btn.classList.add("otto--gesture");
                 if (i == 0) {
-                    btn.innerText = "Happy";
+                    btn.innerText = "高兴";
                     btn.addEventListener("click", () =>{Happy()});
                 } else if (i == 1) {
-                    btn.innerText = "Victory";
+                    btn.innerText = "胜利";
                     btn.addEventListener("click", () =>{Victory()});
                 } else if (i == 2) {
-                    btn.innerText = "Sad";
+                    btn.innerText = "伤心";
                     btn.addEventListener("click", () =>{Sad()});
                 } else if (i == 3) {
-                    btn.innerText = "Sleeping";
+                    btn.innerText = "睡觉";
                     btn.addEventListener("click", () =>{Sleeping()});
                 } else if (i == 4) {
-                    btn.innerText = "Confused";
+                    btn.innerText = "疑惑";
                     btn.addEventListener("click", () =>{Confused()});
                 } else if (i == 5) {
-                    btn.innerText = "Fail";
+                    btn.innerText = "失落";
                     btn.addEventListener("click", () =>{Fail()});
                 } else if (i == 6) {
-                    btn.innerText = "Fart";
+                    btn.innerText = "放屁";
                     btn.addEventListener("click", () =>{Fart()});
+                } else if (i == 7) {
+                    btn.innerText = "摇腿";
+                    btn.addEventListener("click", () =>{ShakeLeg()});
+                } else if (i == 8) {
+                    btn.innerText = "垫脚";
+                    btn.addEventListener("click", () =>{Updown()});
+                } else if (i == 9) {
+                    btn.innerText = "摆动身体";
+                    btn.addEventListener("click", () =>{Swing()});
+                } else if (i == 10) {
+                    btn.innerText = "太空步";
+                    btn.addEventListener("click", () =>{Moonwalker()});
+                } else if (i == 11) {
+                    btn.innerText = "跳舞";
+                    btn.addEventListener("click", () =>{Crusaito()});
+                } else if (i == 12) {
+                    btn.innerText = "飞翔";
+                    btn.addEventListener("click", () =>{Flapping()});
                 }
                 gesturesDiv.appendChild(btn);
             }
@@ -403,7 +426,7 @@
             }
             Swal.fire({
                 icon: 'info',
-                title: 'Robot configuration',
+                title: '机器人配置',
                 html: SettingTxt,
                 showDenyButton: false,
                 showCancelButton: true,
@@ -411,7 +434,7 @@
                 }).then((result) => {
                 if (result.isConfirmed) {
                     newSettings(ROBOT);
-                    Swal.fire('Your configuration is saved!', '', 'success')
+                    Swal.fire('配置已保存!', '', 'success')
                 }
             })
         }
@@ -638,7 +661,7 @@
             let actualdate = new Date().getTime();
             let diff = actualdate - date;
             let days = Math.floor(diff / (1000 * 60 * 60 * 24));
-        document.getElementById("days").innerHTML = days;
+            // document.getElementById("days").innerHTML = days;
 
         }, 1000);
     </script>

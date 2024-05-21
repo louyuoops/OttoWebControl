@@ -19,7 +19,7 @@ function gotCharacteristics(error, characteristics) {
     document.getElementsByClassName('container__bluetooth--icon')[0].style.display = "block";
     document.getElementsByClassName('container__bluetooth--icon')[0].style.backgroundColor = "#32D900";
     SetRobot();
-    Swal.fire('Connected!', '', 'success');
+    Swal.fire('连接成功!', '', 'success');
   }
   // Add a event handler when the device is disconnected
   blueTooth.onDisconnected(onDisconnected);

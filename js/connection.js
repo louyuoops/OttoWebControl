@@ -5,46 +5,47 @@ function OttoConnection(robot) {
     if (robot != ROBOT && ROBOT != '') {
         Swal.fire({
             icon: 'info',
-            title: 'Disconnect your '+ROBOT+' before connecting your '+robot,
-            text: 'To disconnect, click the icon of the robot that is already connected and press the button to disconnect it.'
+            title: '在连接 '+robot + '之前' + '请断开 '+ROBOT+' 连接',
+            text: '点击已连接机器人图标断开蓝牙连接'
         })
     } else {
         ROBOT = robot;
         if(isConnected) {
             Swal.fire({
                 icon: 'question',
-                title: 'Do you want to disconnect your '+robot+' robot?',
+                title: '是否断开机器人 '+robot+' 连接?',
                 showDenyButton: false,
                 showCancelButton: true,
-                confirmButtonText: 'Yes',
+                confirmButtonText: '确认',
+                cancelButtonText: `取消`,
                 }).then((result) => {
                 if (result.isConfirmed) {
                     onDisconnected()
                     SetRobot()
                     document.getElementsByClassName('container__bluetooth--icon')[0].style.display = "none";
                     document.getElementsByClassName('container__bluetooth--icon')[0].style.backgroundColor = "#FF5700";
-                    Swal.fire('Your '+robot+' is disconnected!', '', 'info')
+                    Swal.fire('机器人 '+robot+' 已断开连接!', '', 'info')
                 } 
             })
         } else {
             Swal.fire({
-                title: 'Connect an '+robot+'?',
+                title: '连接 '+robot+'?',
                 icon: 'question',
                 html:
-                    'If you have a <a href="https://www.ottodiy.com/" target="_blank">Otto DIY</a> robot and you want to connect it to this app:<br> ' +
-                    '1. Your Otto must have a bluetooth module <br>' +
-                    '2. Upload the code as appropriate.<ul><li>OttoStarter <a href="OttoS_BLE.ino" target="_blank">Arduino Ino</a> or <a href="https://ivanr3d.com/tools/otto/codes/" target="_blank">Web Installer</a></li> <li>OttoWheels <a href="OttoW_BLE.ino" target="_blank">Arduino Ino</a> or <a href="https://ivanr3d.com/tools/otto/codes/" target="_blank">Web Installer</a></li>',
+                    '如果你有一个 <a href="https://www.ottodiy.com/" target="_blank">Otto DIY</a> 机器人， 在使用此应用连接之前:<br> ' +
+                    '1. 机器人需要配置蓝牙模块 <br>' +
+                    '2. 烧录相应的程序.<ul><li>OttoStarter(Otto基础款) <a href="OttoS_BLE.ino" target="_blank">Arduino 代码</a> 或者 <a href="https://ivanr3d.com/tools/otto/codes/" target="_blank">在线上传</a></li> <li>OttoWheels(Otto双轮机器人) <a href="OttoW_BLE.ino" target="_blank">Arduino 代码</a> 或者 <a href="https://ivanr3d.com/tools/otto/codes/" target="_blank">在线上传</a></li>',
                 showDenyButton: true,
                 showCancelButton: false,
-                confirmButtonText: 'Connect',
-                denyButtonText: `Cancel`,
+                confirmButtonText: '连接',
+                denyButtonText: `取消`,
                 }).then((result) => {
                 if (result.isConfirmed) {
                     OttoConnected = true
                     connectToBle()
                 } else {
                     ROBOT = "";
-                    Swal.fire('No robot connected!', '', 'info')
+                    Swal.fire('未连接机器人!', '', 'info')
                 } 
             })
         }
